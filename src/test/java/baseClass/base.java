@@ -33,5 +33,9 @@ public class base {
 	    public void tearDown() {
 	        driver.quit();
 	    }
+	  public String captureScreen(String name) {
+		
+		return null;
+	 }
 
 }

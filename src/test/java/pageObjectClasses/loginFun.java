@@ -11,9 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class loginFun {
     WebDriver driver;
-
+    WebDriverWait wait;
     public loginFun(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
         PageFactory.initElements(driver, this);
     }
 
@@ -22,14 +24,15 @@ public class loginFun {
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     WebElement password;
-    @FindBy(xpath = "//a[text()='Logout']") WebElement log2;
+    
 
     @FindBy(xpath = "//button[normalize-space()='Login']")
     WebElement loginBtn;
-    @FindBy(xpath ="//p[text()='manda user']/following-sibling::i") WebElement logoutbtn;
+    @FindBy(xpath="//span[@class='oxd-userdropdown-tab']") WebElement profile_click_;
+    @FindBy(xpath ="//a[normalize-space()='Logout']") WebElement logoutbtn;
 
     public void loginPage(String name, String pass) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         wait.until(ExpectedConditions.visibilityOf(username));
@@ -42,16 +45,17 @@ public class loginFun {
     }
 
     public void btn() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
         wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
     }
     
     public void logoutbtn()
     {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    
 
+    	wait.until(ExpectedConditions.elementToBeClickable(profile_click_)).click();
     	wait.until(ExpectedConditions.elementToBeClickable(logoutbtn)).click();
-    	wait.until(ExpectedConditions.elementToBeClickable(log2)).click();
+
     	
     }
 }
