@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-01T15:22:55 IST" name="Suite" finished-at="2025-07-01T15:24:02 IST" duration-ms="67298">
+  <suite started-at="2025-07-05T19:54:18 IST" name="Default suite" finished-at="2025-07-05T19:54:40 IST" duration-ms="21028">
     <groups>
     </groups>
-    <test started-at="2025-07-01T15:22:55 IST" name="Test" finished-at="2025-07-01T15:24:02 IST" duration-ms="67298">
-      <class name="testCases.loginModule">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.loginModule@13c9d689]" started-at="2025-07-01T15:22:43 IST" name="setUp" finished-at="2025-07-01T15:22:55 IST" duration-ms="11627" status="PASS">
+    <test started-at="2025-07-05T19:54:18 IST" name="Default test" finished-at="2025-07-05T19:54:40 IST" duration-ms="21028">
+      <class name="testCases.AdminModule">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-05T19:54:19 IST" name="setUp" finished-at="2025-07-05T19:54:30 IST" duration-ms="11946" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="logintest()[pri:0, instance:testCases.loginModule@13c9d689]" started-at="2025-07-01T15:22:56 IST" name="logintest" finished-at="2025-07-01T15:24:02 IST" duration-ms="66280" status="PASS">
+        <test-method signature="adminTest_Tc_22to23()[pri:2, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-05T19:54:30 IST" name="adminTest_Tc_22to23" finished-at="2025-07-05T19:54:39 IST" duration-ms="8320" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- logintest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.loginModule@13c9d689]" started-at="2025-07-01T15:24:04 IST" name="tearDown" finished-at="2025-07-01T15:24:04 IST" duration-ms="483" status="PASS">
+        </test-method> <!-- adminTest_Tc_22to23 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-05T19:54:39 IST" name="tearDown" finished-at="2025-07-05T19:54:39 IST" duration-ms="707" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- testCases.loginModule -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+      </class> <!-- testCases.AdminModule -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -12,7 +12,7 @@ public class base {
 	
 	public static WebDriver driver;
 	protected  Logger logger = LoggerFactory.getLogger(this.getClass());
-	@BeforeSuite
+	@BeforeMethod
 	public void setUp()
 	{
 		try
@@ -29,7 +29,7 @@ public class base {
 			e.getMessage();
 		}
 	}
-	 @AfterSuite
+	 @AfterMethod
 	    public void tearDown() {
 	        driver.quit();
 	    }

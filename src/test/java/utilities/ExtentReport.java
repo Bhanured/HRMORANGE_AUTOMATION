@@ -16,7 +16,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import baseClass.base;
 
 
-public class ExtentReport implements ITestListener {
+/*public class ExtentReport implements ITestListener {
     public ExtentSparkReporter sparkReporter;
     public ExtentReports extent;
     public ExtentTest test;
@@ -82,3 +82,4 @@ public class ExtentReport implements ITestListener {
 
     
 }
+*/
