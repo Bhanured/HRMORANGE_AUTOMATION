@@ -29,7 +29,7 @@ public class loginModule extends base {
             String username = excel.getcelldata(sheetName, i, 1);
             String password = excel.getcelldata(sheetName, i, 2);
 
-            System.out.println("\n🔐 Test " + i + ": Username = " + username + ", Password = " + password);
+            System.out.println("\n Test " + i + ": Username = " + username + ", Password = " + password);
 
             login.loginPage(username, password);
             
@@ -39,14 +39,14 @@ public class loginModule extends base {
             String actualUrl = driver.getCurrentUrl();
 
             if (actualUrl.equals(expectedSuccessUrl)) {
-                System.out.println("✅ Login Success");
+                System.out.println("Login Success");
                 logger.info("Successful");
                 login.logoutbtn();
                 Thread.sleep(3000);// Return to login for next test
                 
             } else {
             	logger.info("unSuccessful login");
-                System.out.println("❌ Login Failed");
+                System.out.println("Login Failed");
                 
                 Thread.sleep(3000);
             }

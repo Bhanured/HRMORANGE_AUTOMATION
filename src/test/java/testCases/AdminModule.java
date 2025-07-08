@@ -1,8 +1,11 @@
 package testCases;
 
+import static org.testng.Assert.fail;
+
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -39,8 +42,10 @@ public class AdminModule extends base {
 	
 	 @Test(priority = 2)
 	 public void adminTest_Tc_22to23() throws InterruptedException {
+		
 	     loginFun login = new loginFun(driver);
 	     Admin_functionality adminFunctionality = new Admin_functionality(driver);
+	     
 	     System.out.println("Login module is running");
 
 	     login.loginPage("Admin", "admin123");
@@ -65,9 +70,47 @@ public class AdminModule extends base {
 	     
 	     
 	     
-	    softAssert.assertAll();
-
+	    
 	     
 
 }
+
+	 @Test(priority = 3)
+	 public void adminTest_Tc_24() throws InterruptedException, TimeoutException {
+		 
+	 
+	     loginFun login = new loginFun(driver);
+	     Admin_functionality adminFunctionality = new Admin_functionality(driver);
+	     
+	     System.out.println("Login module is running");
+
+	     login.loginPage("Admin", "admin123");
+	     login.btn();
+	     adminFunctionality.clickAdminTab();
+	     adminFunctionality.addBtn();
+	     Thread.sleep(2000); // Wait for the Add button to be clickable
+	     adminFunctionality.selectUserRole("ESS");
+	     
+	
+	    
+	     adminFunctionality.enterEmployeeName('s');
+	     Thread.sleep(2000); // Wait for the employee name field to be populated
+	     adminFunctionality.status("Enabled");
+	     
+	     adminFunctionality.enterUserName("Bhanu25757");
+	     
+		     adminFunctionality.enterPassword("Bhanu@123","Bhanu@123");	
+		     adminFunctionality.saveBtn();
+		     System.out.println("User created successfully");
+		     Thread.sleep(4000);
+		     adminFunctionality.verifySuccessMessage();
+		     Thread.sleep(4000);
+		     
+	     
+	     
+	     
+	    
+	     
+	 }
+	 
 }
