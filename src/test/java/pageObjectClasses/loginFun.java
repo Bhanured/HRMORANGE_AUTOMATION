@@ -19,10 +19,10 @@ public class loginFun {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//input[@placeholder='username']")
+    @FindBy(xpath = "(//div[@class='oxd-input-group__label-wrapper'])[1]/following-sibling::div[1]")
     WebElement username;
 
-    @FindBy(xpath = "//input[@placeholder='password']")
+    @FindBy(xpath = "(//div[@class='oxd-input-group__label-wrapper'])[2]/following-sibling::div[1]")
     WebElement password;
     
 
