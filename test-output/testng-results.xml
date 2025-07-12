@@ -2,20 +2,27 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-08T18:41:39 IST" name="Default suite" finished-at="2025-07-08T18:42:13 IST" duration-ms="33628">
+  <suite started-at="2025-07-12T19:16:42 IST" name="Default suite" finished-at="2025-07-12T19:17:13 IST" duration-ms="30468">
     <groups>
     </groups>
-    <test started-at="2025-07-08T18:41:39 IST" name="Default test" finished-at="2025-07-08T18:42:13 IST" duration-ms="33628">
+    <test started-at="2025-07-12T19:16:42 IST" name="Default test" finished-at="2025-07-12T19:17:13 IST" duration-ms="30468">
       <class name="testCases.AdminModule">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-08T18:41:39 IST" name="setUp" finished-at="2025-07-08T18:41:50 IST" duration-ms="10883" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.AdminModule@34a3d150]" started-at="2025-07-12T19:16:42 IST" name="setUp" finished-at="2025-07-12T19:16:54 IST" duration-ms="11082" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="adminTest_Tc_24()[pri:3, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-08T18:41:50 IST" name="adminTest_Tc_24" finished-at="2025-07-08T18:42:12 IST" duration-ms="22055" status="PASS">
+        <test-method signature="adminTest_Tc_Deleteuser(org.testng.ITestContext)[pri:4, instance:testCases.AdminModule@34a3d150]" started-at="2025-07-12T19:16:54 IST" name="adminTest_Tc_Deleteuser" finished-at="2025-07-12T19:17:12 IST" duration-ms="18811" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@16ecee1]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- adminTest_Tc_24 -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.AdminModule@6302bbb1]" started-at="2025-07-08T18:42:12 IST" name="tearDown" finished-at="2025-07-08T18:42:13 IST" duration-ms="634" status="PASS">
+        </test-method> <!-- adminTest_Tc_Deleteuser -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.AdminModule@34a3d150]" started-at="2025-07-12T19:17:12 IST" name="tearDown" finished-at="2025-07-12T19:17:13 IST" duration-ms="522" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
