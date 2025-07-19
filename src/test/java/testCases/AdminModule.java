@@ -140,12 +140,22 @@ public class AdminModule extends base {
 	     adminFunctionality.enterPassword("Bhanu@123", "Bhanu@123");
 	     adminFunctionality.saveBtn();
 	     adminFunctionality.verifySuccessMessage();
+	     String Beforerecord=adminFunctionality.countNumberOfRecords();
+	     int Before_number=Integer.valueOf(Beforerecord.substring(Beforerecord.indexOf('(')+1, Beforerecord.indexOf(')')));
+	     System.out.println("Total records after deletion: " + Before_number);
 
 	     // 🔁 Now directly verify that the user appears
 	     
 	     logger.info("Deleting user: " + name);
 	     Thread.sleep(4000);// reuse same object/drivers
-	     adminFunctionality.deleteUser(name); // 👈 now passing context
+	     adminFunctionality.deleteUser(name); 
+	    // 👈 now passing context
+	     String Afterrecord=adminFunctionality.countNumberOfRecords();
+	     int After_number=Integer.valueOf(Afterrecord.substring(Afterrecord.indexOf('(')+1, Afterrecord.indexOf(')')));
+	     System.out.println("Total records after deletion: " + After_number);
+	     Assert.assertTrue(Before_number>After_number, "User deletion failed or count did not change as expected.");
+	     
+	     adminFunctionality.deleteMultipleUsers();
 	     
 	 }
 

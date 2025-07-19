@@ -52,7 +52,14 @@ public class Admin_functionality {
     @FindBy(xpath = "//input[@placeholder='Type for hints...']") WebElement employeeNameSystem;
     @FindBy(xpath = "(//div[@class='oxd-select-text--after']//i)[2]") WebElement selectStatusSystem;
     @FindBy(xpath = "//button[normalize-space()='Search']") WebElement searchSystem;
-    	// ========================== Actions ===========================
+    @FindBy(xpath="(//span[@class='oxd-text oxd-text--span'])[1]") WebElement Records;
+          @FindBy(xpath = "//div[@class='orangehrm-container']")  WebElement container;
+    
+
+    
+    
+    
+    // ========================== Actions ===========================
 
 	public void clickAdminTab() {
 		try {
@@ -313,6 +320,42 @@ public class Admin_functionality {
 	        e.printStackTrace();
 	        return false;
 	    }
+	    
 	}
+	public static String countNumberOfRecords()
+	{
+		WebElement Recordnumber=wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding'] span[class='oxd-text oxd-text--span']")));
+		return Recordnumber.getText();
+		
+	}
+	public void  deleteMultipleUsers()
+	{
+		wait.until(ExpectedConditions.visibilityOf(container));
+		String numbverOfRecordsInDelete = countNumberOfRecords();
+		numbverOfRecordsInDelete = numbverOfRecordsInDelete.substring(numbverOfRecordsInDelete.indexOf("(")+1,numbverOfRecordsInDelete.indexOf(")"));
+		int numberOfRecords = Integer.parseInt(numbverOfRecordsInDelete);
+		if(numberOfRecords == 0) {
+			System.out.println("No users to delete.");
+			return;
+		}
+		for(int j=1;j<numberOfRecords;j++)
+		{
+			WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@role='row'])[2+"+j+"]/div[1]")));
+			deleteButton.click();
+			
+			
+		
+		}
+		try {
+		WebElement confirmDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Delete Selected']")));
+		confirmDelete.click();
+		System.out.println("All users deleted successfully");
+		}
+		catch(Exception e) {
+			System.out.println("No users to delete");
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
-
