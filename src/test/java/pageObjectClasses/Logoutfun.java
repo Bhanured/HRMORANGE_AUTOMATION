@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Logoutfun{
 	WebDriver driver;
 	public Logoutfun(WebDriver driver) {
-		// Constructor to initialize the elements
+		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

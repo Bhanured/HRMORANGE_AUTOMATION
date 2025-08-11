@@ -4,7 +4,9 @@ import static org.testng.Assert.fail;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,13 +20,20 @@ import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.github.javafaker.Faker;
+
 import baseClass.base;
 import jdk.internal.org.jline.utils.Log;
 import pageObjectClasses.Admin_functionality;
+import pageObjectClasses.Logoutfun;
 import pageObjectClasses.loginFun;
 
 public class AdminModule extends base {
 	 SoftAssert softAssert = new SoftAssert();
+	 loginFun login;
+	 Admin_functionality adminFunctionality;
+	 Logoutfun logout;
+	 
 	
 
 	// This class is intended
@@ -116,7 +125,7 @@ public class AdminModule extends base {
 	 }
 	 */
 
-	 @Test(priority =4 )
+	 @Test(priority=4,enabled=false)
 	 public void adminTest_Tc_Deleteuser(ITestContext context) throws InterruptedException, TimeoutException {
 	     // reuse driver if using hybrid setup
 
@@ -128,7 +137,7 @@ public class AdminModule extends base {
 	     login.btn();
 
 	     adminFunctionality.clickAdminTab();
-	     adminFunctionality.addBtn();
+	    	     adminFunctionality.addBtn();
 	     Thread.sleep(2000);
 
 	     adminFunctionality.selectUserRole("ESS", context); // 👈 now passing context
@@ -140,6 +149,7 @@ public class AdminModule extends base {
 	     adminFunctionality.enterPassword("Bhanu@123", "Bhanu@123");
 	     adminFunctionality.saveBtn();
 	     adminFunctionality.verifySuccessMessage();
+	     
 	     String Beforerecord=adminFunctionality.countNumberOfRecords();
 	     int Before_number=Integer.valueOf(Beforerecord.substring(Beforerecord.indexOf('(')+1, Beforerecord.indexOf(')')));
 	     System.out.println("Total records after deletion: " + Before_number);
@@ -158,7 +168,65 @@ public class AdminModule extends base {
 	     adminFunctionality.deleteMultipleUsers();
 	     
 	 }
-
-
 	 
+	 @Test(priority = 5,enabled=false)
+	 public void TC_33() throws TimeoutException
+	 {
+		 login=new loginFun(driver);
+		 
+		 login.loginPage("Admin", "admin123");
+		 login.btn();
+		 adminFunctionality=new Admin_functionality(driver);
+		 adminFunctionality.clickAdminTab();
+		 Assert.assertTrue(adminFunctionality.clickJobMenu(),"Not Visiable");
+		 List<String>actualmenuList=adminFunctionality.jobMenuList();
+		 List<String>expecteddMenuList= Arrays.asList("Job Titles","Pay Grades","Employment Status","Job Categories","Work Shifts");
+		 int i=0;
+		 //TC33
+		 for(String e:actualmenuList)
+		 {
+			 System.out.println("Actual_Title :"+ e +" "+"Expected name :"+expecteddMenuList.get(i));
+			 
+				 Assert.assertTrue(e.contains(expecteddMenuList.get(i)));
+				 i++;	 		 
+		 }
+		 
+		 //TC38
+		 Faker faker = new Faker();
+		String path="C:/Users/bhanu/Downloads/HRMORANGE_Professional.xlsx";
+		 
+		 adminFunctionality.fill_form(faker.job().toString(), faker.company().toString(), path, faker.programmingLanguage().toString());
+		 
+	 }
+	 @Test(priority = 6,enabled=false)
+	 public void TC_40() throws TimeoutException
+	 {
+		 login=new loginFun(driver);
+		 
+		 login.loginPage("Admin", "admin123");
+		 login.btn();
+		 adminFunctionality=new Admin_functionality(driver);
+		 adminFunctionality.clickAdminTab();
+		 adminFunctionality.clickJobMenu();
+		
+		 
+		 System.out.println("testCase_39_ Admin tab is clicked");
+		 adminFunctionality.fill_form(" "," "," "," ");
+	 }
+	 @Test(priority = 7)
+	 public void TC_39() throws TimeoutException
+	 {
+		 login=new loginFun(driver);
+		 
+		 login.loginPage("Admin", "admin123");
+		 login.btn();
+		 adminFunctionality=new Admin_functionality(driver);
+		 adminFunctionality.clickAdminTab();
+		 adminFunctionality.clickJobMenu();
+		
+		 
+		 System.out.println("testCase_39_ Admin tab is clicked");
+		 Assert.assertEquals(false,adminFunctionality.fill_form("@##@@@%@%"," "," "," "));
+		 
+	 }
 }

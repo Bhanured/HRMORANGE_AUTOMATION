@@ -1,10 +1,17 @@
 package pageObjectClasses;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
+import java.util.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +19,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -54,8 +62,20 @@ public class Admin_functionality {
     @FindBy(xpath = "//button[normalize-space()='Search']") WebElement searchSystem;
     @FindBy(xpath="(//span[@class='oxd-text oxd-text--span'])[1]") WebElement Records;
           @FindBy(xpath = "//div[@class='orangehrm-container']")  WebElement container;
-    
-
+     @FindBy(xpath="//span[text()='Job ']") WebElement jobMenu;
+     @FindBy(xpath="//ul[@role='menu']//li[1]") WebElement Job_Title;
+     @FindBy(xpath="//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']") WebElement jobTitleInput;
+   
+     @FindBy(xpath="//button[normalize-space()='Add']") WebElement addBtnInJOBtitle;
+     
+     
+    @FindBy(xpath="//textarea[@placeholder='Type description here']") WebElement JobDescription;
+ 
+    @FindBy(xpath="//input[@type='file']") WebElement UploadFile;
+  
+    @FindBy(xpath="//textarea[@placeholder='Add note']") WebElement Addnote;
+  
+    @FindBy(xpath="//button[normalize-space()='Save']") WebElement SavebtnJob;
     
     
     
@@ -63,7 +83,7 @@ public class Admin_functionality {
 
 	public void clickAdminTab() {
 		try {
-			System.out.println("🔵 Clicking on Admin tab");
+			System.out.println(" Clicking on Admin tab");
 			wait.until(ExpectedConditions.elementToBeClickable(adminTab)).click();
 		} catch (Exception e) {
 			System.out.println(" Failed to click Admin tab");
@@ -73,32 +93,32 @@ public class Admin_functionality {
 
 	public void addBtn() {
 		try {
-			System.out.println("🔵 Clicking on Add button");
+			System.out.println("Clicking on Add button");
 			wait.until(ExpectedConditions.elementToBeClickable(addbtn)).click();
 		} catch (Exception e) {
-			System.out.println("❌ Failed to click Add button");
+			System.out.println(" Failed to click Add button");
 			e.printStackTrace();
 		}
 	}
 
 	public void saveBtn() {
 		try {
-			System.out.println("🔵 Clicking on Save button");
+			System.out.println("Clicking on Save button");
 			wait.until(ExpectedConditions.elementToBeClickable(savebtn)).click();
 		} catch (Exception e) {
-			System.out.println("❌ Failed to click Save button");
+			System.out.println(" Failed to click Save button");
 			e.printStackTrace();
 		}
 	}
 
 	public List<WebElement> getRequiredFieldErrorMsg() {
 		try {
-			System.out.println("🔍 Checking for required field error messages");
+			System.out.println(" Checking for required field error messages");
 			By errorLocator = By.xpath("//span[text()='Required']");
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(errorLocator));
 			return driver.findElements(errorLocator);
 		} catch (Exception e) {
-			System.out.println("⚠️ No required field messages found: " + e.getMessage());
+			System.out.println("⚠ No required field messages found: " + e.getMessage());
 			return List.of(); // return empty list
 		}
 	}
@@ -207,7 +227,7 @@ public class Admin_functionality {
 		WebElement toast = new WebDriverWait(driver, Duration.ofSeconds(5))
 		    .until(ExpectedConditions.presenceOfElementLocated(
 		        By.xpath("//p[contains(@class,'oxd-text--toast-message')]")));
-		System.out.println("✅ Toast message found: " + toast.getText());
+		System.out.println(" Toast message found: " + toast.getText());
 
 
 }
@@ -281,6 +301,7 @@ public class Admin_functionality {
 	        boolean isDeleted = false;
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orangehrm-container")));
 	        // Get all rows in the user table
+	        
 	        List<WebElement> rows = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
 	                By.xpath("//div[@class='oxd-table-row oxd-table-row--with-border']")));
 	        System.out.println("Total users found: " + rows.size());
@@ -357,5 +378,92 @@ public class Admin_functionality {
 		}
 		
 	}
-	
-}
+	public Boolean clickJobMenu ()
+	{
+		return jobMenu.isDisplayed();
+		
+	}
+	public List<String> jobMenuList()
+	{
+		jobMenu.click();
+		WebElement menu=driver.findElement(By.xpath("//ul[@class='oxd-dropdown-menu']"));
+		wait.until(ExpectedConditions.visibilityOf(menu));
+		List<String>dropdownmenuJobs=new ArrayList<>();
+		for(int i=1;i<=5;i++)
+		{
+			WebElement temp=driver.findElement(By.xpath("//ul[@class='oxd-dropdown-menu']/li["+i+"]"));
+
+			dropdownmenuJobs.add(temp.getText());
+		}
+		System.out.println("dropdownmenuJobs :"+dropdownmenuJobs );
+		
+		return dropdownmenuJobs;
+	} 
+	public Boolean fill_form(String JobName, String jobDes, String Filelocation, String Note) {
+	    wait.until(ExpectedConditions.elementToBeClickable(jobMenu)).click();
+	    wait.until(ExpectedConditions.elementToBeClickable(Job_Title)).click();
+	    addBtnInJOBtitle.click();
+
+	    System.out.println("Adding job title:");
+	    wait.until(ExpectedConditions.visibilityOf(jobTitleInput)).sendKeys(JobName);
+
+	    System.out.println("Adding job Description:");
+	    wait.until(ExpectedConditions.visibilityOf(JobDescription)).sendKeys(jobDes);
+
+	    System.out.println("Adding UploadFile");
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("arguments[0].style.display = 'block';", UploadFile);
+
+	    try {
+	        if (new File(Filelocation).exists()) {
+	            UploadFile.sendKeys(Filelocation);
+	            System.out.println(Filelocation + ": successfully Added");
+	        } else {
+	            System.out.println("File not found at: " + Filelocation);
+	        }
+	    } catch (ElementNotInteractableException e) {
+	        System.out.println("File input is not interactable: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("Unexpected error during file upload: " + e.getMessage());
+	    }
+
+	    System.out.println("Adding Addnote");
+	    wait.until(ExpectedConditions.visibilityOf(Addnote)).sendKeys(Note);
+
+	    System.out.println("Clicking Save Button");
+	    try {
+	        SavebtnJob.click();
+
+	        WebElement toast = null;
+	        try {
+	            toast = new WebDriverWait(driver, Duration.ofSeconds(5))
+	                    .until(ExpectedConditions.presenceOfElementLocated(
+	                            By.xpath("//p[contains(@class,'oxd-text--toast-message')]")));
+	            System.out.println("Toast message: " + toast.getText());
+	        } catch (TimeoutException e) {
+	            System.out.println("No success message found");
+	        }
+
+	        try {
+	            WebElement requiredText = new WebDriverWait(driver, Duration.ofSeconds(5))
+	                    .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Required']")));
+	            System.out.println("Required text is captured: " + requiredText.getText());
+	        } catch (TimeoutException e) {
+	            System.out.println("No required text here");
+	        }
+
+	        return true;
+
+	    } catch (ElementNotInteractableException e) {
+	        System.out.println("There is an issue clicking the Save button or filling required fields: " + e.getMessage());
+	        return false;
+	    }
+	}
+
+
+		
+		
+		
+		
+	}
+

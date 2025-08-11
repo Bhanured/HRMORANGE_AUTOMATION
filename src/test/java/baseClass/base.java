@@ -42,7 +42,7 @@ public class base {
 		
 	public void setUp() {
 		
-		 driver = new ChromeDriver();
+		 driver = new EdgeDriver();
 		try
 		{
 			

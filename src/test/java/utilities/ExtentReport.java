@@ -35,7 +35,6 @@ public class ExtentReport extends base implements ITestListener {
         sparkReporter.config().setDocumentTitle("HRMOrange Automation"); // Title of report
         sparkReporter.config().setReportName("HRMOrange Functional Testing");  // Name of the report
         sparkReporter.config().setTheme(Theme.DARK);
-
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("Application", "HRMOrange");
@@ -59,7 +58,7 @@ public class ExtentReport extends base implements ITestListener {
         // Capture screenshot and attach
         String imgPath = new base().captureScreen(result.getName());
 
-        test.addScreenCaptureFromPath(imgPath); // ✅ Add screenshot to Extent Report
+        test.addScreenCaptureFromPath(imgPath); //  Add screenshot to Extent Report
     }
 
 
@@ -75,9 +74,9 @@ public class ExtentReport extends base implements ITestListener {
 }
     
     public void onFinish(ITestContext context) {
-        extent.flush(); // 💾 Save the report to disk
+        extent.flush(); //  Save the report to disk
 
-        // (Optional) Automatically open the report in the browser
+        
         try {
             Desktop.getDesktop().browse(new java.io.File("C:\\Users\\bhanu\\eclipse-myworkspace\\OrangeHRM\\Report\\myreport.html").toURI());
         } catch (Exception e) {
