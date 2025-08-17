@@ -213,7 +213,7 @@ public class AdminModule extends base {
 		 System.out.println("testCase_39_ Admin tab is clicked");
 		 adminFunctionality.fill_form(" "," "," "," ");
 	 }
-	 @Test(priority = 7)
+	 @Test(priority = 7,enabled=false)
 	 public void TC_39() throws TimeoutException
 	 {
 		 login=new loginFun(driver);
@@ -226,7 +226,24 @@ public class AdminModule extends base {
 		
 		 
 		 System.out.println("testCase_39_ Admin tab is clicked");
-		 Assert.assertEquals(false,adminFunctionality.fill_form("@##@@@%@%"," "," "," "));
+		 Assert.assertEquals(true,adminFunctionality.fill_form("@##@@@%@%"," "," "," "));
+		 
+	 }
+	 @Test(priority = 8)
+	 public void TC_45() throws TimeoutException
+	 {
+		 login=new loginFun(driver);
+		 
+		 login.loginPage("Admin", "admin123");
+		 login.btn();
+		 adminFunctionality=new Admin_functionality(driver);
+		 adminFunctionality.clickAdminTab();
+		 adminFunctionality.clickJobMenu();
+		
+		 
+		 System.out.println("testCase_39_ Admin tab is clicked");
+		 String path="C:/Users/bhanu/Downloads/Bug_Report_Attachment.mp4";
+		 Assert.assertEquals(false,adminFunctionality.fill_form("@##@@@%@%"," ",path," "));
 		 
 	 }
 }

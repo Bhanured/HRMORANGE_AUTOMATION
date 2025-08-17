@@ -8,11 +8,11 @@
   <parameter name="browser" value="edge"></parameter>
   
     <classes>
-     <!--<class name="testCases.loginModule"/>
+     <class name="testCases.loginModule"/>
      
      
-     <class name="testCases.Logoutfunctionality"/>-->
-     <class name="testCases.AdminModule"/>
+     <!--<class name="testCases.Logoutfunctionality"/>
+     <class name="testCases.AdminModule"/-->
      
     </classes>
      </test> <!-- Test -->

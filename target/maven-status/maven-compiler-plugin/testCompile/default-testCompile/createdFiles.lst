@@ -1,7 +1,12 @@
 pageObjectClasses\BaseDriver.class
 pageObjectClasses\Logoutfun.class
 testCases\Logoutfunctionality.class
+utilities\ExtentReport.class
 pageObjectClasses\loginFun.class
 utilities\Excelutlity.class
+pageObjectClasses\Admin_functionality.class
+testCases\AdminModule.class
+testCases\practice.class
 baseClass\base.class
+testCases\drop.class
 testCases\loginModule.class

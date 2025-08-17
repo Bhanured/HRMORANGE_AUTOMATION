@@ -1,8 +1,12 @@
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\baseClass\base.java
+C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\pageObjectClasses\Admin_functionality.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\pageObjectClasses\BaseDriver.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\pageObjectClasses\loginFun.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\pageObjectClasses\Logoutfun.java
+C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\testCases\AdminModule.java
+C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\testCases\drop.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\testCases\loginModule.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\testCases\Logoutfunctionality.java
+C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\testCases\practice.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\utilities\Excelutlity.java
 C:\Users\bhanu\eclipse-myworkspace\OrangeHRM\src\test\java\utilities\ExtentReport.java
