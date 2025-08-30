@@ -5,9 +5,9 @@
     <classes>
       <class name="testCases.AdminModule">
         <methods>
+          <include name="TC_47"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="TC_45"/>
         </methods>
       </class> <!-- testCases.AdminModule -->
     </classes>

@@ -28,11 +28,14 @@ public class Admin_functionality {
 
 	WebDriver driver;
 	static WebDriverWait wait;
+	JavascriptExecutor js;
+
 
 	public Admin_functionality(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		js=(JavascriptExecutor) driver;
 	}
 
 	@FindBy(xpath = "//span[text()='Admin']")
@@ -76,7 +79,14 @@ public class Admin_functionality {
     @FindBy(xpath="//textarea[@placeholder='Add note']") WebElement Addnote;
   
     @FindBy(xpath="//button[normalize-space()='Save']") WebElement SavebtnJob;
-    
+    @FindBy(xpath="//span[text()='Organization ']") WebElement Organization;
+    @FindBy(xpath = "//li[contains(@class,'--active oxd-topbar-body-nav-tab')]//ul/li")
+	 public List<WebElement> organizationSubMenus;
+  @FindBy(xpath="//a[normalize-space()='General Information']") WebElement GeneralInfo;
+  @FindBy(xpath="//label[normalize-space()='Edit']") WebElement EditBtnGeneralinfo;
+  @FindBy(xpath="//input[@type='checkbox']") WebElement EditOnOff;
+  @FindBy (xpath="(//label[text()='Organization Name']/following::input)[1]") WebElement OrganizationNameGeneral;
+  @FindBy(xpath="//p[contains(@class,'oxd-text oxd-text--p')]/following-sibling::button[1]") WebElement GeneralSave;
     
     
     // ========================== Actions ===========================
@@ -470,7 +480,76 @@ public class Admin_functionality {
 	    }
 	}
 
-		
+		public void organization()
+		{
+			
+			if(Organization.isDisplayed()) {
+				
+			Organization.click();
+			System.out.println("Successfulyy clicked on Organization menu ");
+			
+			
+			}
+			else
+			{
+				System.out.print("Not  Able to click on Organization ");
+			}
+			
+			for(WebElement item:organizationSubMenus)
+			{
+			 System.out.println(item.getText() +" ");
+			}
+			System.out.println("Clicking on General info");
+			js.executeScript("arguments[0].click();",GeneralInfo);
+			
+			
+			try {
+				wait.until(ExpectedConditions.visibilityOf(EditBtnGeneralinfo));
+				
+			    if (EditOnOff.isEnabled() ) {
+			        System.out.println("EDIT option is visible but disabled (turned OFF)");
+			    } else {
+			        System.out.println("EDIT option is either enabled or not visible");
+			    }
+			} catch (NoSuchElementException e) {
+			    System.out.println("EDIT option is not present in the DOM");
+			}
+			
+			System.out.println("Clicking on edit on");
+			//js.executeScript("arguments[0].click;",EditOnOff);
+			EditOnOff.click();
+    
+     if(EditOnOff.isEnabled())
+     {
+    	 System.out.println("EDIT option is turn on is AND Color :"+ EditOnOff.getCssValue("background-color"));
+     }
+     else
+     {
+    	 System.out.println("EDIT option is turn off");
+     }
+			
+     try {
+     if(OrganizationNameGeneral.isEnabled())
+     {
+    	 OrganizationNameGeneral.sendKeys("Bhanu Startup");
+    	 System.out.println("organization name is entered and Input Field is Enabled ");
+     }}
+     catch(ElementNotInteractableException e) {
+    	 System.out.println(e.getMessage());
+     }
+			try {
+				wait.until(ExpectedConditions.visibilityOf(GeneralSave));
+     js.executeScript("arguments[0].scrollIntoView(true);",GeneralSave);
+     js.executeScript("arguments[0].click;",GeneralSave);
+     
+			}
+     catch(NoSuchElementException e)
+			{
+    	 System.out.println(e.getMessage().toString());
+    	 
+			}
+			
+		}
 		
 		
 	}
